@@ -1,0 +1,26 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%
+
+    ArrayList<Hero> heroes = dbQuery.getHeroesByCategory(category);
+
+    for (Hero hero : heroes) {
+%>          <div class="result">
+    <h3><c:out value='<%= hero.getName()%>' /></h3>
+    <c:if test='<%= hero.getAddress() != null%>'>
+        <p><c:out value='<%= hero.getAddress().getLine1()%>' />, 
+        <c:out value='<%= hero.getAddress().getCounty()%>' />, 
+        <c:out value='<%= hero.getAddress().getPostCode()%>' /></p>
+    </c:if>
+
+</div>
+<script type="text/javascript">
+    var lat = <%= Double.parseDouble(hero.getPoint().getLatitude())%>;
+    var long = <%= Double.parseDouble(hero.getPoint().getLongitude())%>;
+
+    coordsList.push(lat, long);
+</script>
+<%
+    }
+%>
+
