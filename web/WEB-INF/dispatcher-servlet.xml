@@ -26,7 +26,7 @@
             <props>
                 <prop key="index.htm">indexController</prop>
                 <prop key="results.htm">viewResultsController</prop>
-                <prop key="resultsDefined.htm">viewResultsController</prop>
+                <prop key="resultsList.htm">viewResultsController</prop>
             </props>
         </property>
     </bean>
