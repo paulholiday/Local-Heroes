@@ -1,0 +1,30 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="com.lbi.localheroes.DBConnector,
+                com.mongodb.DBCollection,
+                com.mongodb.DBCursor,
+                com.mongodb.BasicDBObject"  %>
+<div class="body">
+    <p class="title">Choose a category you want to search for</p>
+    <form id="search-form">
+        <select id="location"  name="Category">
+            <!--Call java method that returns all the categories in DB -->
+            <option>Please select a category</option>
+            <%-- 
+                DBConnector dbConnector = new DBConnector();
+                DBCollection categories = dbConnector.getTable("categories");
+                DBCursor cursor = categories.find();
+                
+                while(cursor.hasNext()){
+                    %><option><c:out value="${cursor.next()}" /></option><%
+                }
+            --%>
+            <option>Pubs</option>
+            <option>Restaurants</option>
+            <option>Phone shop</option>
+            <option>Food shop</option>
+            <option>Post office</option>
+        </select>
+        <input id="submit" type="submit" value="Go">
+    </form>
+</div>

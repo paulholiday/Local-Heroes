@@ -1,0 +1,19 @@
+[
+	{
+	    "_id": {
+	        "$oid": "51f1301ce4b025b965d7793c"
+	    },
+    	"name": "Pubs"
+	},
+	{
+	    "_id": {
+	        "$oid": "51f128ebe4b025b965d778d8"
+	    },
+	    "name": "Restaurants"
+	},
+	{
+	    "_id": {
+	        "$oid": "51f128cae4b025b965d778d4"
+	    }
+	}
+]

@@ -1,0 +1,276 @@
+[
+	{
+	    "_id": {
+	        "$oid": "51cc4c1a793d039be0306311"
+	    },
+	    "name": "Nandos",
+	    "categories": [
+	        "Restaurants"
+	    ],
+	    "tags": [
+	        "eat in",
+	        "takeaway",
+	        "chicken",
+	        "spicy"
+	    ],
+	    "address": {
+	        "line1": "114-118 Commercial St",
+	        "town": "Spitalfields",
+	        "county": "London",
+	        "postcode": "E1 6NF"
+	    },
+	    "point": {
+	        "latitude": 51.520091,
+	        "longitude": -0.077548
+	    }
+	},
+	{
+	    "_id": {
+	        "$oid": "51f12d2fe4b025b965d7791f"
+	    },
+	    "name": "Poncho 8",
+	    "categories": [
+	        "Restaurants"
+	    ],
+	    "tags": [
+	        "takeaway",
+	        "vegetarian",
+	        "spicy",
+	        "mexican"
+	    ],
+	    "address": {
+	        "line1": "5 Steward St",
+	        "county": "London",
+	        "postcode": "E1 6FQ"
+	    },
+	    "point": {
+	        "latitude": 51.518821,
+	        "longitude": -0.077478
+	    }
+	},
+	{
+	    "_id": {
+	        "$oid": "51f12de2e4b025b965d7792d"
+	    },
+	    "name": "Mama Thai",
+	    "categories": [
+	        "Restaurants"
+	    ],
+	    "tags": [
+	        "takeaway",
+	        "sit down",
+	        "vegetarian",
+	        "spicy",
+	        "thai",
+	        "curry",
+	        "noodles"
+	    ],
+	    "point": {
+	        "latitude": 51.51808,
+	        "longitude": -0.074657
+	    }
+	},
+	{
+	    "_id": {
+	        "$oid": "51f12e4ee4b025b965d77931"
+	    },
+	    "name": "The Orange Buffalo",
+	    "categories": [
+	        "Restaurants"
+	    ],
+	    "tags": [
+	        "takeaway",
+	        "chicken",
+	        "american",
+	        "spicy"
+	    ],
+	    "address": {
+	        "line1": "Truman Brewery Car Park",
+	        "county": "London",
+	        "postcode": "E1 6QL"
+	    },
+	    "point": {
+	        "latitude": 51.521051,
+	        "longitude": -0.073208
+	    }
+	},
+	{
+	    "_id": {
+	        "$oid": "51f12eebe4b025b965d77937"
+	    },
+	    "name": "Tayyabs",
+	    "categories": [
+	        "Restaurants"
+	    ],
+	    "tags": [
+	        "sit down",
+	        "curry",
+	        "indian",
+	        "spicy"
+	    ],
+	    "address": {
+	        "line1": "83-89 Fieldgate St",
+	        "county": "London",
+	        "postcode": "E1 1JU"
+	    },
+	    "point": {
+	        "latitude": 51.517197,
+	        "longitude": -0.063486
+	    }
+	},
+	{
+	    "_id": {
+	        "$oid": "51f12f97e4b025b965d7793a"
+	    },
+	    "name": "Son of a Stag",
+	    "categories": [
+	        "Clothes shops"
+	    ],
+	    "tags": [
+	        "contemporary",
+	        "hipster",
+	        "men's"
+	    ],
+	    "address": {
+	        "line1": "The Old Truman Brewery",
+	        "line2": "9 Dray Walk",
+	        "county": "London",
+	        "postcode": "E1 6QL"
+	    },
+	    "point": {
+	        "latitude": 51.520996,
+	        "longitude": -0.072579
+	    }
+	},
+	{
+	    "_id": {
+	        "$oid": "51f12ff0e4b025b965d7793b"
+	    },
+	    "name": "The North Face",
+	    "categories": [
+	        "Clothes shops"
+	    ],
+	    "tags": [
+	        "outdoor"
+	    ],
+	    "address": {
+	        "line1": "Box Park",
+	        "line2": "Bethnal Green Rd",
+	        "county": "London",
+	        "postcode": "E1 6GY"
+	    },
+	    "point": {
+	        "latitude": 51.523587,
+	        "longitude": -0.07608
+	    }
+	},
+	{
+	    "_id": {
+	        "$oid": "51f13079e4b025b965d7793f"
+	    },
+	    "name": "The Ten Bells",
+	    "categories": [
+	        "Pubs"
+	    ],
+	    "tags": [
+	        "traditional"
+	    ],
+	    "address": {
+	        "line1": "84 Commercial St",
+	        "county": "London",
+	        "postcode": "E1 6LY"
+	    },
+	    "point": {
+	        "latitude": 51.51932,
+	        "longitude": -0.074418
+	    }
+	},
+	{
+	    "_id": {
+	        "$oid": "51f130b4e4b025b965d77941"
+	    },
+	    "name": "The Gun",
+	    "categories": [
+	        "Pubs",
+	        "Restaurants"
+	    ],
+	    "tags": [
+	        "traditional"
+	    ],
+	    "address": {
+	        "line1": "54 Brushfield St",
+	        "county": "London",
+	        "postcode": "E1 6AG"
+	    },
+	    "point": {
+	        "latitude": 51.51896,
+	        "longitude": -0.076215
+	    }
+	},
+	{
+	    "_id": {
+	        "$oid": "51f1310ce4b025b965d77944"
+	    },
+	    "name": "Pride of Spitalfield",
+	    "categories": [
+	        "Pubs"
+	    ],
+	    "tags": [
+	        "traditional",
+	        "real ale"
+	    ],
+	    "address": {
+	        "line1": "3 Heneage St",
+	        "county": "London",
+	        "postcode": "E1 5LJ"
+	    },
+	    "point": {
+	        "latitude": 51.518906,
+	        "longitude": -0.071103
+	    }
+	},
+	{
+	    "_id": {
+	        "$oid": "51f13154e4b025b965d77945"
+	    },
+	    "name": "The Water Poet",
+	    "categories": [
+	        "Pubs"
+	    ],
+	    "tags": [
+	        "traditional",
+	        "real ale"
+	    ],
+	    "address": {
+	        "line1": "9-11 Folgate St",
+	        "county": "London",
+	        "postcode": "E1 6BK"
+	    },
+	    "point": {
+	        "latitude": 51.521066,
+	        "longitude": -0.077921
+	    }
+	},
+	{
+	    "_id": {
+	        "$oid": "51f13257e4b025b965d77948"
+	    },
+	    "name": "Princess Of Prussia",
+	    "categories": [
+	        "Pubs"
+	    ],
+	    "tags": [
+	        "traditional",
+	        "shepherd neame"
+	    ],
+	    "address": {
+	        "line1": "15 Prescot St",
+	        "county": "London",
+	        "postcode": "E1 8AZ"
+	    },
+	    "point": {
+	        "latitude": 51.511655,
+	        "longitude": -0.070657
+	    }
+	}
+]
