@@ -117,7 +117,7 @@ p.title {
     background-color: darkslategray;
 }
 
-span.tag{
+input.tag{
     color: black;
     display: inline-block;
     margin: 5px;

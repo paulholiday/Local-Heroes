@@ -45,21 +45,25 @@
             %>
             <div class="leftResultsTab">
                 <div class="scrollableResults">
+                    //TODO: call ajax to get results and query with url parameters category and tags
                     <%@include file="/WEB-INF/jspf/resultsList.jspf" %>
                 </div>
             </div>
             <div class="tags">
+                //TODO: Deal with getting tags parameter from URL
                 <h3>Refine you search by selecting tags:</h3><br>
-                <%
+                <form id="tag-form" action="Results" method="post">
+                    <%
 
-                    AggregationOutput output = dbQuery.getTagsFromCategory(category);
+                        AggregationOutput output = dbQuery.getTagsFromCategory(category);
 
-                    for (DBObject object : output.results()) {
-                        String tagName = object.get("name").toString();
-                %><span class="tag"> <%= tagName%> </span><%
-                    }
-                %>
-                ${refinedHeroes.toString()}
+                        for (DBObject object : output.results()) {
+                            String tagName = object.get("name").toString();
+                    %><input type="submit" name="tagClicked" value="<%= tagName %>" class="tag" /><%
+                        }
+                    %>
+                    ${refinedHeroes.toString()}
+                </form>
             </div>
         </div>
 
@@ -70,8 +74,7 @@
                 doAjax();
                 function doAjax() {
                     $.ajax({
-                        url: '/resultsDefined',
-                        data: { selectedTags: selectedTags, category: '<%= category %>' },
+                        url: '/Results?Category=' + <%= category %> + '&Tags=' + selectedTags,
                         success: function(response) {
                             //$('.scrollableResults').load('/WEB-INF/jspf/resultsList.jspf');
                             $('.scrollableResults').html(response);
