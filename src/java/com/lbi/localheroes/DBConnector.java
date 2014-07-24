@@ -23,7 +23,7 @@ public class DBConnector {
 
     public void connect() {
         try {
-            String textUri = "mongodb://paul-the-hero:thedarkknight@ds029778.mongolab.com:29778/local-heroes";
+            String textUri = "mongodb://paul-the-hero:theamazingleopard@ds029778.mongolab.com:29778/local-heroes";
             MongoClientURI uri = new MongoClientURI(textUri);
             MongoClient mongoClient = new MongoClient(uri);
             db = mongoClient.getDB("local-heroes");

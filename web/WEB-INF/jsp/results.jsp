@@ -14,6 +14,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="hero" uri="../tlds/Hero.tld"%>
 
 <!DOCTYPE HTML>
 <html>
@@ -38,7 +39,8 @@
             </div>
         </div>
         <div class="body">
-            <h1>Results for <%= request.getParameter("Category")%></h1>
+            <hero:Hero/>
+            <h1>Results for ${pageContext.Message}<%= request.getParameter("Category")%></h1>
             <div id="map-canvas"></div>
             <div class="leftResultsTab">
                 <div class="scrollableResults">
