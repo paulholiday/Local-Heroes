@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="body">
-            <hero:Hero/>
+            <hero:gohero/>
             <h1>Results for ${pageContext.Message}<%= request.getParameter("Category")%></h1>
             <div id="map-canvas"></div>
             <div class="leftResultsTab">
@@ -57,7 +57,7 @@
                             <p><c:out value='<%= hero.getAddress().getLine1()%>' />, 
                                 <c:out value='<%= hero.getAddress().getCounty()%>' />, 
                                 <c:out value='<%= hero.getAddress().getPostCode()%>' /></p>
-                            </c:if>
+                        </c:if>
 
                     </div>
                     <script type="text/javascript">

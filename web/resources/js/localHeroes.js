@@ -3,6 +3,51 @@ var selectedTags = new Array();
 
 $(document).ready(function() {
     var map;
+    var titleString = $('.body h1').html();
+    var categoryString = titleString.substring(12); //hard-coded value to get Category
+    
+    getResults();
+    function getResults() {
+        
+        var urlString = 'rest/heroes/' + categoryString;
+
+        $.getJSON(urlString, function(data) {
+
+            $.each(data, function(idx, obj) {
+
+                $('.scrollableResults').append('<div class="result" id="result-' + idx +'"><h3>' + obj.name + '</h3></div>');
+                if(obj.address !== null) {
+                    $('#result-' + idx).append('<p>' + obj.address.line1 + ', ' + obj.address.county + ', ' + obj.address.postCode + '</p>');
+                }
+
+                var lat = obj.point.latitude;
+                var long = obj.point.longitude;
+
+                coordsList.push(lat, long);
+
+            });  
+
+         }).done(function() {
+             initialize();
+             getTags();
+         });
+        
+    }
+    
+    function getTags() {
+        var urlString = 'rest/tags/' + categoryString;
+        
+        $.getJSON(urlString, function (data) {
+            $.each(data, function(idx, obj) {
+                if(idx === 'result') {
+                    $.each(obj, function(index, object) {
+                        $('.tags').append('<span class="tag">' + object.name + '</span>');
+                    });
+                } 
+            });
+        });
+    }
+    
     function initialize() {
         var mapOptions = {
             center: new google.maps.LatLng(51.5219, -0.0717),
@@ -14,7 +59,8 @@ $(document).ready(function() {
         for (var i = 0; i < coordsList.length; i = i + 2) {
             addMarker(coordsList[i], coordsList[i + 1]);
         }
-
+        
+        google.maps.event.addDomListener(window, 'load', initialize);
     }
 
     $(".toggleButton").click(function() {
@@ -54,6 +100,5 @@ $(document).ready(function() {
             map: map
         });
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
 
-})
+});

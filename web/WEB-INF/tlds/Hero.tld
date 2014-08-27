@@ -4,8 +4,9 @@
   <short-name>hero</short-name>
   <uri>/WEB-INF/tlds/Hero</uri>
   <tag>
-    <name>Hero</name>
+    <name>gohero</name>
     <tag-class>com.lbi.localheroes.tags.HeroTag</tag-class>
+    <tei-class>com.lbi.localheroes.tags.extrainfo.HeroTagExtraInfo</tei-class>
     <body-content>empty</body-content>
   </tag>
 

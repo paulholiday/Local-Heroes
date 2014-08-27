@@ -76,7 +76,6 @@ public class DBQuery {
     }
     
     public AggregationOutput getTagsFromCategory(String category){
-        ArrayList<String> tagsList = new ArrayList<String>();
         
         DBObject categoryQuery = new BasicDBObject();
         categoryQuery.put("categories", category);

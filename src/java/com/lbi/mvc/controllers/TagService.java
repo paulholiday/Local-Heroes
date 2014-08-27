@@ -5,28 +5,31 @@
 package com.lbi.mvc.controllers;
 
 import com.lbi.localheroes.DBQuery;
-import com.lbi.localheroes.model.Hero;
-import java.util.ArrayList;
-import java.util.List;
+import com.mongodb.AggregationOutput;
+import com.mongodb.CommandResult;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
- 
-@Path("/heroes")
-public class HeroService {
+
+/**
+ *
+ * @author holidayp
+ */
+@Path("/tags")
+public class TagService {
+    
     @GET
     @Path("/{param}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Hero> getHeroesByCategory(@PathParam("param") String category) {
+    public CommandResult getHeroesByCategory(@PathParam("param") String category) {
 
         DBQuery dbQuery = new DBQuery("heroes");
-        ArrayList<Hero> heroes = dbQuery.getHeroesByCategory(category);
+        AggregationOutput heroes = dbQuery.getTagsFromCategory(category);
 
-        return heroes;
+        return heroes.getCommandResult();
 
     }
-    
     
 }
