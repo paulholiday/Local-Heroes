@@ -15,10 +15,10 @@ $(document).ready(function() {
 
             $.each(data, function(idx, obj) {
 
-                $('.scrollableResults').append('<div class="result" id="result-' + idx +'"><h3>' + obj.name + '</h3></div>');
-                if(obj.address !== null) {
-                    $('#result-' + idx).append('<p>' + obj.address.line1 + ', ' + obj.address.county + ', ' + obj.address.postCode + '</p>');
-                }
+//                $('.scrollableResults').append('<div class="result" id="result-' + idx +'"><h3>' + obj.name + '</h3></div>');
+//                if(obj.address !== null) {
+//                    $('#result-' + idx).append('<p>' + obj.address.line1 + ', ' + obj.address.county + ', ' + obj.address.postCode + '</p>');
+//                }
 
                 var lat = obj.point.latitude;
                 var long = obj.point.longitude;

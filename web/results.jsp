@@ -29,6 +29,7 @@
         <title>Local Heroes</title>
     </head>
     <body>
+        
         <hero:gohero/>
         
         <div class="topBar">
@@ -52,11 +53,10 @@
                 <div class="scrollableResults">
                     //TODO: call ajax to get results and query with url parameters category and tags
                     <%--<%@include file="/WEB-INF/jspf/resultsList.jspf" %>--%>
-
+                    ${pageContext.getAttribute("Heroes")}
                 </div>
             </div>
             <div class="tags">
-                //TODO: Deal with getting tags parameter from URL
                 <h3>Refine your search by selecting tags:</h3><br>
             </div>
         </div>
