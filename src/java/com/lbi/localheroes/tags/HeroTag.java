@@ -101,7 +101,7 @@ public class HeroTag extends TagSupport{
             
             markupString.append(RESULTS_DIV);
             markupString.append(i);
-            markupString.append(END_SPAN);
+            markupString.append(CLOSE_TAG);
             markupString.append(HEADER_3_TAG);
             markupString.append(json.get(NAME));
             markupString.append(CLOSE_HEADER_3_TAG);
