@@ -124,7 +124,22 @@ public class HeroTag extends TagSupport{
                     } 
                 }
                 
-                markupString.append("\"");
+                markupString.append("\" ");
+            }
+            
+            if(json.get("point") != null) {
+                try {
+                    JSONObject jsonPoint = (JSONObject) new JSONParser().parse(json.get("point").toString());
+                    markupString.append("longitude=\"");
+                    markupString.append(jsonPoint.get("longitude"));
+                    markupString.append("\" ");
+                    markupString.append("latitude=\"");
+                    markupString.append(jsonPoint.get("latitude"));
+                    markupString.append("\" ");
+                } catch (ParseException ex) {
+                    Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
             
             
