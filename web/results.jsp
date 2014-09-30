@@ -13,6 +13,7 @@
         </script>
         <script type="text/javascript" src="resources/js/jquery-1.10.2.min.js" ></script>
         <script type="text/javascript" src="resources/js/localHeroes.js" ></script>
+        <script type="text/javascript" src="resources/js/refineSearch.js" ></script>
         <title>Local Heroes</title>
     </head>
     <body>
@@ -33,13 +34,14 @@
             <div id="map-canvas"></div>
             <div class="leftResultsTab">
                 <div class="scrollableResults">
-                    //TODO: call ajax to get results and query with url parameters category and tags
                     ${pageContext.getAttribute("Heroes")}
                 </div>
             </div>
             <div class="tags">
                 <h3>Refine your search by selecting tags:</h3><br>
                 ${pageContext.getAttribute("Tags")}
+                <br><br>
+                <span class="clearButton">Clear Search</span>
             </div>
         </div>
         

@@ -118,6 +118,7 @@ p.title {
 }
 
 .tag{
+    cursor: pointer;
     color: black;
     display: inline-block;
     margin: 5px;
@@ -135,7 +136,17 @@ p.title {
     background: linear-gradient(to bottom, #feffff 0%,#ddf1f9 35%,#a0d8ef 100%); /* W3C */
 }
 
-.selected{
+.tag.selected{
     color: red;
     border: 2px solid red;
+}
+
+.clearButton{
+    cursor: pointer;
+    color: white;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid white;
+    border-radius: 10px ;
+    background: black;
 }

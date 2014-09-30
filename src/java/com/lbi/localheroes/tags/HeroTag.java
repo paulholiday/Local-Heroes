@@ -48,7 +48,7 @@ public class HeroTag extends TagSupport{
     private static final String POSTCODE = "postCode";
     
     private static final String RESULTS_DIV = "<div class=\"result\" id=\"result-";
-    private static final String CLOSE_TAG = "\">";
+    private static final String CLOSE_TAG = ">";
     private static final String HEADER_3_TAG = "<h3>";
     private static final String CLOSE_HEADER_3_TAG = "</h3>";
     private static final String PARAGRAPH_TAG = "<p>";
@@ -101,6 +101,33 @@ public class HeroTag extends TagSupport{
             
             markupString.append(RESULTS_DIV);
             markupString.append(i);
+            markupString.append("\"");
+            
+            JSONArray tagsArray = null;
+            try {
+                if(json.get("tags") != null) {
+                    tagsArray = (JSONArray) new JSONParser().parse(json.get("tags").toString());
+                }
+                
+            } catch (ParseException ex) {
+                Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            if(tagsArray != null) {
+                markupString.append("heroTags=\"");
+                
+                for(int j = 0; j < tagsArray.size(); j++) {
+                    markupString.append(tagsArray.get(j));
+
+                    if(j < tagsArray.size() - 1) {
+                        markupString.append(";");
+                    } 
+                }
+                
+                markupString.append("\"");
+            }
+            
+            
             markupString.append(CLOSE_TAG);
             markupString.append(HEADER_3_TAG);
             markupString.append(json.get(NAME));

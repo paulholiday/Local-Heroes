@@ -5,6 +5,7 @@
 package com.lbi.localheroes.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,13 +15,13 @@ public class Hero {
     
     private String id;
     private String name;
-    private ArrayList<String> categories;
-    private ArrayList<String> tags;
+    private List<String> categories;
+    private List<String> tags;
     private Address address;
     private Point point;
     
     public Hero(){
-        
+        tags = new ArrayList<String>();
     }
 
     public String getId() {
@@ -39,7 +40,7 @@ public class Hero {
         this.name = name;
     }
 
-    public ArrayList<String> getCategories() {
+    public List<String> getCategories() {
         return categories;
     }
 
@@ -47,12 +48,16 @@ public class Hero {
         this.categories = categories;
     }
 
-    public ArrayList<String> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
     public void setTags(ArrayList<String> tags) {
         this.tags = tags;
+    }
+    
+    public void addTag(String tag) {
+        tags.add(tag);
     }
 
     public Address getAddress() {

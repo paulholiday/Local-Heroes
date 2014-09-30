@@ -11,6 +11,7 @@ import com.mongodb.DBObject;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -47,7 +48,16 @@ public class DBQuery {
                 hero.setName(json.get("name").toString());
                 JSONObject address = (JSONObject)json.get("address");
                 JSONObject point = (JSONObject)json.get("point");
-                if(address != null && point != null){
+                JSONArray tags = (JSONArray)json.get("tags");
+                
+                if(tags != null) {
+                    for(int i = 0; i < tags.size(); i++) {
+                        hero.addTag(tags.get(i).toString());
+                    }
+                    
+                }
+                
+                if(address != null){
                     Address heroAddress = new Address();
                     heroAddress.setLine1(address.get("line1").toString());
                     heroAddress.setCounty(address.get("county").toString());
@@ -55,6 +65,7 @@ public class DBQuery {
                     heroAddress.setPostCode(address.get("postcode").toString());
                     hero.setAddress(heroAddress);
                 }
+                
                 
                 if(point != null){
                     Point heroPoint = new Point();
