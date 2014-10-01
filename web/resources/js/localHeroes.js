@@ -1,12 +1,14 @@
 var coordsList = new Array();
+var mapMarkers = [];
+var hiddenMarkers = [];
+var map;
 
 $(document).ready(function() {
-    var map;
     var titleString = $('.body h1').html();
     var categoryString = titleString.substring(12); //hard-coded value to get Category
     
     var colourList = ['FE7569', 'DA00FF', '5E00FF', '00E2FF', '00FF62', 'EBFF00', 'FF9E00'];
-    
+        
     getResults();
     function getResults() {
         
@@ -116,6 +118,8 @@ $(document).ready(function() {
             map: map,
             icon : pinImage
         });
+        
+        mapMarkers.push(marker);
     }
     
     function colourHero(lat, long, colour) {
