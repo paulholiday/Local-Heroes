@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lbi.mvc.controllers;
+package com.lbi.localheroes.controllers;
 
 import com.lbi.localheroes.DBQuery;
 import com.lbi.localheroes.model.Hero;

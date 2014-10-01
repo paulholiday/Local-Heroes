@@ -22,3 +22,5 @@
 local-heroes.iml
 
 src/local-heroes1.iml
+/nbproject/private/
+/build/

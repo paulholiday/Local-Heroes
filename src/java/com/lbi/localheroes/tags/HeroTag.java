@@ -30,7 +30,7 @@ public class HeroTag extends TagSupport{
     private static final String HEROES_ATTRIBUTE_NAME = "Heroes";
     private static final String TAGS_ATTRIBUTE_NAME = "Tags";
     
-    private static final String REST_URI = "http://localhost:8080/MVC/rest/";
+    private static final String REST_URI = "http://localhost:8080/LocalHeroesProject/rest/";
     private static final String GET_REQUEST_METHOD = "GET";
     private static final String REQUEST_PROPERTY = "ACCEPT";
     private static final String REQUEST_PROPERTY_VALUE = "application/json";

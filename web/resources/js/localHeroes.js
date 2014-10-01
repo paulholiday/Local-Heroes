@@ -119,6 +119,14 @@ $(document).ready(function() {
             icon : pinImage
         });
         
+        var infoWindow = new google.maps.InfoWindow({
+            content: '[Insert some more Hero info here]'
+        });
+        
+        google.maps.event.addListener(marker, 'click', function() {
+            infoWindow.open(map, marker);
+        });
+        
         mapMarkers.push(marker);
     }
     
