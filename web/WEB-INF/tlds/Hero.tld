@@ -9,5 +9,12 @@
     <tei-class>com.lbi.localheroes.tags.extrainfo.HeroTagExtraInfo</tei-class>
     <body-content>empty</body-content>
   </tag>
+  
+  <tag>
+    <name>getcategories</name>
+    <tag-class>com.lbi.localheroes.tags.CategoryTag</tag-class>
+    <tei-class>com.lbi.localheroes.tags.extrainfo.CategoryTagExtraInfo</tei-class>
+    <body-content>empty</body-content>
+  </tag>
 
 </taglib>

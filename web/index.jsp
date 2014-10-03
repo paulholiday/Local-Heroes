@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="hero" uri="WEB-INF/tlds/Hero.tld"%>
 <!DOCTYPE HTML>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="com.lbi.localheroes.DBConnector,
@@ -31,21 +32,8 @@
             <form id="search-form" action="Results" method="post">
                 <select id="category"  name="Category">
                     <option>Please select a category</option>
-                    <% 
-                        DBConnector dbConnector = new DBConnector();
-                        dbConnector.connect();
-                        DBCollection categories = dbConnector.getTable("categories");
-                        
-                        DBObject allQuery = new BasicDBObject();
-                        DBCursor cursor = categories.find(allQuery).sort(new BasicDBObject("name", 1));
-
-                        while(cursor.hasNext()){
-                            DBObject jsonString = cursor.next();
-                            JSONObject json = (JSONObject)new JSONParser().parse(jsonString.toString());
-                            %><option><c:out value='<%=json.get("name") %>' /></option><%
-                        }
-                    %>
-
+                    <hero:getcategories/>
+                    ${pageContext.getAttribute("Categories")}
                 </select>
                 <input id="submit" type="submit" value="Go">
             </form>

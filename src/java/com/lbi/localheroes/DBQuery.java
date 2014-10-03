@@ -1,6 +1,7 @@
 package com.lbi.localheroes;
 
 import com.lbi.localheroes.model.Address;
+import com.lbi.localheroes.model.Category;
 import com.lbi.localheroes.model.Hero;
 import com.lbi.localheroes.model.Point;
 import com.mongodb.AggregationOutput;
@@ -29,6 +30,26 @@ public class DBQuery {
         connector = new DBConnector();
         connector.connect();
         this.table = connector.getTable(tableName);
+    }
+    
+    public ArrayList<Category> getCategories(){
+        ArrayList<Category> categories = new ArrayList<Category>();
+        DBCursor cursor = table.find();
+        
+        while (cursor.hasNext()){
+            DBObject jsonString = cursor.next();
+            JSONObject json;
+            try {
+                json = (JSONObject) new JSONParser().parse(jsonString.toString());
+                Category category = new Category(json.get("name").toString());
+                categories.add(category);
+
+            } catch (ParseException ex) {
+                Logger.getLogger(DBQuery.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }          
+        
+        return categories;
     }
     
     public ArrayList<Hero> getHeroesByCategory(String category){
