@@ -1,6 +1,5 @@
 package com.lbi.localheroes.tags.extrainfo;
 
-import com.lbi.localheroes.model.Category;
 import java.util.List;
 import javax.servlet.jsp.tagext.TagData;
 import javax.servlet.jsp.tagext.TagExtraInfo;
