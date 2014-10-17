@@ -12,9 +12,6 @@ public class Point {
     
     private String latitude;
     private String longitude;
-    
-    public Point(){
-    }
 
     public String getLatitude() {
         return latitude;

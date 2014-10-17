@@ -14,10 +14,6 @@ public class Address {
     private String town;
     private String county;
     private String postCode;
-    
-    public Address(){
-
-    }
 
     public String getLine1() {
         return line1;

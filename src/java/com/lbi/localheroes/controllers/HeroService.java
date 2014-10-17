@@ -6,7 +6,6 @@ package com.lbi.localheroes.controllers;
 
 import com.lbi.localheroes.DBQuery;
 import com.lbi.localheroes.model.Hero;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -22,7 +21,7 @@ public class HeroService {
     public List<Hero> getHeroesByCategory(@PathParam("param") String category) {
 
         DBQuery dbQuery = new DBQuery("heroes");
-        ArrayList<Hero> heroes = dbQuery.getHeroesByCategory(category);
+        List<Hero> heroes = dbQuery.getHeroesByCategory(category);
 
         return heroes;
 

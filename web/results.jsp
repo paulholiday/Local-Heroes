@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link type="text/css" rel="stylesheet" href="<c:url value='resources/css/style.css'/>">
+        <link type="text/css" rel="stylesheet" href="resources/css/style.css">
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <script type="text/javascript"
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJsIRBzqaCKo2NATEMk_8TvBzG9e1FcYI&sensor=true">
@@ -21,7 +21,7 @@
         <hero:gohero/>
         
         <div class="topBar">
-            <a href=""><h1>Local Heroes</h1></a>
+            <a href="/LocalHeroesProject"><h1>Local Heroes</h1></a>
             <div class="topRight">
                 <span>Brick Lane, London</span>
                 <img class="toggleButton london" src="resources/images/toggle.jpg"/>
@@ -34,7 +34,12 @@
             <div id="map-canvas"></div>
             <div class="leftResultsTab">
                 <div class="scrollableResults">
-                    ${pageContext.getAttribute("Heroes")}
+                    <c:forEach var="hero" items="${Heroes}" varStatus="i">
+                        <div class="result" id="result-${i.index}" herotags="${hero.tags}" longitude="${hero.point.longitude}" latitude="${hero.point.latitude}">
+                            <h3>${hero.name}</h3>
+                            <p>${hero.address.line1}, $(hero.address.county}, ${hero.address.postCode}</p>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
             <div class="tags">

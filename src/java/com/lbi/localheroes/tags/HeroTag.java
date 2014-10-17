@@ -4,17 +4,22 @@
  */
 package com.lbi.localheroes.tags;
 
+import com.lbi.localheroes.model.Hero;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.jsp.JspException;
 import static javax.servlet.jsp.tagext.Tag.EVAL_PAGE;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -41,20 +46,7 @@ public class HeroTag extends TagSupport{
     
     private static final String RESULT = "result";
     
-    private static final String ADDRESS = "address";
     private static final String NAME = "name";
-    private static final String LINE1 = "line1";
-    private static final String COUNTY = "county";
-    private static final String POSTCODE = "postCode";
-    
-    private static final String RESULTS_DIV = "<div class=\"result\" id=\"result-";
-    private static final String CLOSE_TAG = ">";
-    private static final String HEADER_3_TAG = "<h3>";
-    private static final String CLOSE_HEADER_3_TAG = "</h3>";
-    private static final String PARAGRAPH_TAG = "<p>";
-    private static final String COMMA = ", ";
-    private static final String CLOSE_PARAGRAPH_TAG = "</p>";
-    private static final String CLOSE_DIV_TAG = "</div>";
     private static final String TAG_SPAN = "<span class=\"tag\">";
     private static final String END_SPAN = "</span>";
     
@@ -75,102 +67,24 @@ public class HeroTag extends TagSupport{
         return EVAL_PAGE;
     }
     
-    private String getHeroesByCategory(String category) {
-        String markupForHeroes = null;
+    private List<Hero> getHeroesByCategory(String category) {
+        String output = getOutputFromRestServiceCall(HEROES_CONTENT_TYPE, category);
         
+        ObjectMapper om = new ObjectMapper();
+        List<Hero> heroes = null;
         try {
-
-            String output = getOutputFromRestServiceCall(HEROES_CONTENT_TYPE, category);
-            JSONArray jsonArray = (JSONArray) new JSONParser().parse(output);
-            markupForHeroes = getMarkupForHeroes(jsonArray);
-            
-        } catch (ParseException ex) {
+            heroes = om.readValue(output, List.class);
+        } catch (JsonParseException ex) {
             Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (JsonMappingException ex) {
+            Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         
-        return markupForHeroes;
+        
+        return heroes;
     }
-    
-    
-    private String getMarkupForHeroes (JSONArray jsonArray) {
-        StringBuilder markupString = new StringBuilder();
-        
-        JSONObject json = null;
-        for (int i = 0; i < jsonArray.size(); i++) {
-            json = (JSONObject) jsonArray.get(i);
-            
-            markupString.append(RESULTS_DIV);
-            markupString.append(i);
-            markupString.append("\"");
-            
-            JSONArray tagsArray = null;
-            try {
-                if(json.get("tags") != null) {
-                    tagsArray = (JSONArray) new JSONParser().parse(json.get("tags").toString());
-                }
-                
-            } catch (ParseException ex) {
-                Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            if(tagsArray != null) {
-                markupString.append("heroTags=\"");
-                
-                for(int j = 0; j < tagsArray.size(); j++) {
-                    markupString.append(tagsArray.get(j));
-
-                    if(j < tagsArray.size() - 1) {
-                        markupString.append(";");
-                    } 
-                }
-                
-                markupString.append("\" ");
-            }
-            
-            if(json.get("point") != null) {
-                try {
-                    JSONObject jsonPoint = (JSONObject) new JSONParser().parse(json.get("point").toString());
-                    markupString.append("longitude=\"");
-                    markupString.append(jsonPoint.get("longitude"));
-                    markupString.append("\" ");
-                    markupString.append("latitude=\"");
-                    markupString.append(jsonPoint.get("latitude"));
-                    markupString.append("\" ");
-                } catch (ParseException ex) {
-                    Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-            }
-            
-            
-            markupString.append(CLOSE_TAG);
-            markupString.append(HEADER_3_TAG);
-            markupString.append(json.get(NAME));
-            markupString.append(CLOSE_HEADER_3_TAG);
-            
-            if(json.get(ADDRESS) != null) {
-                try {
-                    JSONObject jsonAddress = (JSONObject) new JSONParser().parse(json.get(ADDRESS).toString());
-                    markupString.append(PARAGRAPH_TAG);
-                    markupString.append(jsonAddress.get(LINE1));
-                    markupString.append(COMMA);
-                    markupString.append(jsonAddress.get(COUNTY));
-                    markupString.append(COMMA);
-                    markupString.append(jsonAddress.get(POSTCODE));
-                    markupString.append(CLOSE_PARAGRAPH_TAG);
-                } catch (ParseException ex) {
-                    Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-            }
-            
-            
-            markupString.append(CLOSE_DIV_TAG);
-        }
-        
-        return markupString.toString();
-    }
-    
     
     private String getTagsByCategory(String category) {
         String markupForTags = null;
