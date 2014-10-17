@@ -2,14 +2,6 @@
 <%@taglib prefix="hero" uri="WEB-INF/tlds/Hero.tld"%>
 <!DOCTYPE HTML>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="com.lbi.localheroes.DBConnector,
-                com.mongodb.DBCollection,
-                com.mongodb.DBCursor,
-                com.mongodb.BasicDBObject,
-                org.json.simple.JSONObject,
-                org.json.simple.parser.JSONParser,
-                com.mongodb.DBObject,
-                com.mongodb.AggregationOutput"  %>
 
 <html>
     <head>
@@ -33,7 +25,9 @@
                 <select id="category"  name="Category">
                     <option>Please select a category</option>
                     <hero:getcategories/>
-                    ${pageContext.getAttribute("Categories")}
+                    <c:forEach var="category" items="${pageContext.getAttribute('Categories')}">
+                        <option><c:out value="${category.name}"/></option>
+                    </c:forEach>
                 </select>
                 <input id="submit" type="submit" value="Go">
             </form>

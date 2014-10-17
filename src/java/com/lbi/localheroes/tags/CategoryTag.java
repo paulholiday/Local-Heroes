@@ -4,12 +4,15 @@
  */
 package com.lbi.localheroes.tags;
 
+import com.lbi.localheroes.model.Category;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.jsp.JspException;
@@ -48,36 +51,23 @@ public class CategoryTag extends TagSupport{
         return EVAL_PAGE;
     }
     
-    private String getCategories() {
-        String markupForCategories = null;
+    private List<Category> getCategories() {
+        List<Category> categories = new ArrayList<Category>();
         
         try {
-
+            
             String output = getOutputFromRestServiceCall(CATEGORIES_CONTENT_TYPE);
             JSONArray jsonArray = (JSONArray) new JSONParser().parse(output);
-            markupForCategories = getMarkupForCategories(jsonArray);
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject json = (JSONObject) jsonArray.get(i);            
+                categories.add(new Category((String) json.get(NAME)));
+            }
             
         } catch (ParseException ex) {
             Logger.getLogger(CategoryTag.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return markupForCategories;
-    }
-    
-    
-    private String getMarkupForCategories (JSONArray jsonArray) {
-        StringBuilder markupString = new StringBuilder();
-        
-        JSONObject json = null;
-        for (int i = 0; i < jsonArray.size(); i++) {
-            json = (JSONObject) jsonArray.get(i);
-            
-            markupString.append(START_OPTION_TAG);
-            markupString.append(json.get(NAME));
-            markupString.append(CLOSE_OPTION_TAG);
-        }
-        
-        return markupString.toString();
+        return categories;
     }
     
     private String getOutputFromRestServiceCall(String contentType) {
