@@ -25,7 +25,7 @@
                 <select id="category"  name="Category">
                     <option>Please select a category</option>
                     <hero:getcategories/>
-                    <c:forEach var="category" items="${pageContext.getAttribute('Categories')}">
+                    <c:forEach var="category" items="${categories}">
                         <option><c:out value="${category.name}"/></option>
                     </c:forEach>
                 </select>

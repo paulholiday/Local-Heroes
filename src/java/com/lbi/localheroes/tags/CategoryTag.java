@@ -18,18 +18,19 @@ import java.util.logging.Logger;
 import javax.servlet.jsp.JspException;
 import static javax.servlet.jsp.tagext.Tag.EVAL_PAGE;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 /**
  *
  * @author destreej
  */
-public class CategoryTag extends TagSupport{
+public class CategoryTag extends TagSupport {
     
-    private static final String CATEGORIES_ATTRIBUTE_NAME = "Categories";
+    private static final String CATEGORIES_ATTRIBUTE_NAME = "categories";
+    
+    private static final String CATEGORIES_CONTENT_TYPE = "categories";
     
     private static final String REST_URI = "http://localhost:8080/LocalHeroesProject/rest/";
     private static final String GET_REQUEST_METHOD = "GET";
@@ -37,14 +38,6 @@ public class CategoryTag extends TagSupport{
     private static final String REQUEST_PROPERTY_VALUE = "application/json";
     private static final String HTTP_ERROR_STRING = "Failed : HTTP error code : ";
     
-    private static final String CATEGORIES_CONTENT_TYPE = "categories";
-    
-    private static final String NAME = "name";
-    
-    private static final String START_OPTION_TAG = "<option>";
-    private static final String CLOSE_OPTION_TAG = "</option>";
-    
-  
     @Override
     public int doEndTag() throws JspException {
        pageContext.setAttribute(CATEGORIES_ATTRIBUTE_NAME, getCategories());
@@ -52,20 +45,18 @@ public class CategoryTag extends TagSupport{
     }
     
     private List<Category> getCategories() {
-        List<Category> categories = new ArrayList<Category>();
-        
+        List<Category> categories = new ArrayList<Category>();        
+        String output = getOutputFromRestServiceCall(CATEGORIES_CONTENT_TYPE);
+        ObjectMapper om = new ObjectMapper();
         try {
-            
-            String output = getOutputFromRestServiceCall(CATEGORIES_CONTENT_TYPE);
-            JSONArray jsonArray = (JSONArray) new JSONParser().parse(output);
-            for (int i = 0; i < jsonArray.size(); i++) {
-                JSONObject json = (JSONObject) jsonArray.get(i);            
-                categories.add(new Category((String) json.get(NAME)));
-            }
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(CategoryTag.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            categories = om.readValue(output, List.class);
+        } catch (JsonParseException ex) {
+            Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JsonMappingException ex) {
+            Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         
         return categories;
     }
@@ -97,6 +88,5 @@ public class CategoryTag extends TagSupport{
         
         return restServiceOutput;
     }
-    
     
 }
