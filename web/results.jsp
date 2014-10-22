@@ -37,14 +37,16 @@
                     <c:forEach var="hero" items="${Heroes}" varStatus="i">
                         <div class="result" id="result-${i.index}" herotags="${hero.tags}" longitude="${hero.point.longitude}" latitude="${hero.point.latitude}">
                             <h3>${hero.name}</h3>
-                            <p>${hero.address.line1}, $(hero.address.county}, ${hero.address.postCode}</p>
+                            <p>${hero.address.line1}, ${hero.address.county}, ${hero.address.postCode}</p>
                         </div>
                     </c:forEach>
                 </div>
             </div>
             <div class="tags">
                 <h3>Refine your search by selecting tags:</h3><br>
-                ${pageContext.getAttribute("Tags")}
+                <c:forEach var="tag" items="${Tags}">
+                    <span class="tag">${tag}</span>
+                </c:forEach>
                 <br><br>
                 <span class="clearButton">Clear Search</span>
             </div>

@@ -21,7 +21,7 @@ public class CategoryService {
     public List<Category> getCategories() {
 
         DBQuery dbQuery = new DBQuery("categories");
-        ArrayList<Category> categories = dbQuery.getCategories();
+        List<Category> categories = dbQuery.getCategories();
 
         return categories;
 

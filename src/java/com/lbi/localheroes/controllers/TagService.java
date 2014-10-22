@@ -7,6 +7,7 @@ package com.lbi.localheroes.controllers;
 import com.lbi.localheroes.DBQuery;
 import com.mongodb.AggregationOutput;
 import com.mongodb.CommandResult;
+import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -23,13 +24,10 @@ public class TagService {
     @GET
     @Path("/{param}")
     @Produces(MediaType.APPLICATION_JSON)
-    public CommandResult getHeroesByCategory(@PathParam("param") String category) {
+    public List<String> getHeroesByCategory(@PathParam("param") String category) {
 
         DBQuery dbQuery = new DBQuery("heroes");
-        AggregationOutput heroes = dbQuery.getTagsFromCategory(category);
-
-        return heroes.getCommandResult();
-
+        return dbQuery.getTagsFromCategory(category);
     }
     
 }

@@ -6,10 +6,14 @@ import com.lbi.localheroes.model.Hero;
 import com.lbi.localheroes.model.Point;
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
+import com.mongodb.CommandResult;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.WriteConcern;
+import com.mongodb.WriteResult;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONArray;
@@ -32,8 +36,8 @@ public class DBQuery {
         this.table = connector.getTable(tableName);
     }
     
-    public ArrayList<Category> getCategories(){
-        ArrayList<Category> categories = new ArrayList<Category>();
+    public List<Category> getCategories(){
+        List<Category> categories = new ArrayList<Category>();
         DBCursor cursor = table.find();
         
         while (cursor.hasNext()){
@@ -52,8 +56,8 @@ public class DBQuery {
         return categories;
     }
     
-    public ArrayList<Hero> getHeroesByCategory(String category){
-        ArrayList<Hero> heroes = new ArrayList<Hero>();
+    public List<Hero> getHeroesByCategory(String category){
+        List<Hero> heroes = new ArrayList<Hero>();
         DBObject query = new BasicDBObject();
         query.put("categories", category);
         DBObject id = new BasicDBObject("_id", 0);
@@ -107,7 +111,7 @@ public class DBQuery {
         return heroes;
     }
     
-    public AggregationOutput getTagsFromCategory(String category){
+    public List<String> getTagsFromCategory(String category){
         
         DBObject categoryQuery = new BasicDBObject();
         categoryQuery.put("categories", category);
@@ -139,58 +143,36 @@ public class DBQuery {
         sort.put("$sort", sortCount);
         AggregationOutput output = table.aggregate(match, project, unwind, groupTags, projectTags, sort);
         
-        return output;
+        List<String> tagsList = new ArrayList<String>();
+        for(DBObject dbObject : output.results()) {
+            tagsList.add(dbObject.get("name").toString());
+        }
+        
+        return tagsList;
         
     }
 
-    public String getHeroesByCategoryAndTags(String[] tags, String category) {
-//        ArrayList<Hero> heroes = new ArrayList<Hero>();
-//        String[] tagList = tags.split(",");
-//        DBObject query = new BasicDBObject();
-//        query.put("categories", category);
-//        for(String tag : tagList){
-//            tag = tag.trim();
-//            
-//        }
-//        
-//        DBObject id = new BasicDBObject("_id", 0);
-//        DBCursor cursor = table.find(query, id);
-//        
-//        while(cursor.hasNext()){
-//             DBObject jsonString = cursor.next();
-//             JSONObject json;
-//             Hero hero = new Hero();
-//            try {
-//                json = (JSONObject)new JSONParser().parse(jsonString.toString());
-//                //hero.setId(json.get("id").toString());
-//                hero.setName(json.get("name").toString());
-//                JSONObject address = (JSONObject)json.get("address");
-//                JSONObject point = (JSONObject)json.get("point");
-//                if(address != null && point != null){
-//                    Address heroAddress = new Address();
-//                    heroAddress.setLine1(address.get("line1").toString());
-//                    heroAddress.setCounty(address.get("county").toString());
-//                    //heroAddress.setTown(address.get("town").toString());
-//                    heroAddress.setPostCode(address.get("postcode").toString());
-//                    hero.setAddress(heroAddress);
-//                }
-//                
-//                if(point != null){
-//                    Point heroPoint = new Point();
-//                    heroPoint.setLatitude(point.get("latitude").toString());
-//                    heroPoint.setLongitude(point.get("longitude").toString());
-//                    hero.setPoint(heroPoint);
-//                }
-//                
-//                heroes.add(hero);
-//
-//            } catch (ParseException ex) {
-//                Logger.getLogger(DBQuery.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//             
-//        }   
+    public void addHero(Hero hero) {
+        BasicDBObject heroToAdd = new BasicDBObject("name", hero.getName());
+        heroToAdd.append("categories", "[" + hero.getCategories().get(0) + "]");
+        heroToAdd.append("tags", "[]");
         
-        return "a string";
+        BasicDBObject addressToAdd = new BasicDBObject("line1", hero.getAddress().getLine1());
+        addressToAdd.append("county", hero.getAddress().getCounty());
+        addressToAdd.append("postcode", hero.getAddress().getPostCode());
+        
+        heroToAdd.append("address", addressToAdd);
+        
+        BasicDBObject pointToAdd = new BasicDBObject("latitude", hero.getPoint().getLatitude());
+        pointToAdd.append("longitude", hero.getPoint().getLongitude());
+        heroToAdd.append("point", pointToAdd);
+        
+        BasicDBObject locationToAdd = new BasicDBObject("type", "Point");
+        locationToAdd.append("coordinates", "[" + hero.getPoint().getLongitude() + ", " + hero.getPoint().getLatitude() + "]");
+        
+        heroToAdd.append("loc", locationToAdd);
+        
+        table.insert(heroToAdd, WriteConcern.JOURNAL_SAFE);
     }
     
 }

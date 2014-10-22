@@ -12,7 +12,7 @@ public class HeroTagExtraInfo extends TagExtraInfo{
     
     @Override
     public VariableInfo[] getVariableInfo(TagData data) {
-        return new VariableInfo[] { new VariableInfo("Message", "String", true, VariableInfo.AT_END)};
+        return new VariableInfo[] { new VariableInfo("heroes", "java.util.List", true, VariableInfo.AT_END)};
     }
     
 }

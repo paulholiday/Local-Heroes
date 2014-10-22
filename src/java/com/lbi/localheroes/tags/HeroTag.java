@@ -20,10 +20,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -43,12 +39,6 @@ public class HeroTag extends TagSupport{
     
     private static final String HEROES_CONTENT_TYPE = "heroes";
     private static final String TAGS_CONTENT_TYPE = "tags";
-    
-    private static final String RESULT = "result";
-    
-    private static final String NAME = "name";
-    private static final String TAG_SPAN = "<span class=\"tag\">";
-    private static final String END_SPAN = "</span>";
     
     private static final String FORWARD_SLASH = "/";
     
@@ -72,6 +62,7 @@ public class HeroTag extends TagSupport{
         
         ObjectMapper om = new ObjectMapper();
         List<Hero> heroes = null;
+        
         try {
             heroes = om.readValue(output, List.class);
         } catch (JsonParseException ex) {
@@ -82,48 +73,30 @@ public class HeroTag extends TagSupport{
             Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
-        
         return heroes;
     }
     
-    private String getTagsByCategory(String category) {
-        String markupForTags = null;
+    private List<String> getTagsByCategory(String category) {
         
+        List<String> tags = null;
+        String output = getOutputFromRestServiceCall(TAGS_CONTENT_TYPE, category);
+        System.out.println("Output = " + output);
+        ObjectMapper om = new ObjectMapper();
         try {
-            
-            String output = getOutputFromRestServiceCall(TAGS_CONTENT_TYPE, category);
-            JSONObject jsonObject = (JSONObject) new JSONParser().parse(output);
-            markupForTags = getMarkupForTags(jsonObject);
-
-        } catch (ParseException ex) {
+            tags = om.readValue(output, List.class);
+        } catch (JsonParseException ex) {
             Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (JsonMappingException ex) {
+            Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         
-        return markupForTags;
+        System.out.println(tags);
+        
+        return tags;
     }
     
-    private String getMarkupForTags (JSONObject jsonObject) {
-        StringBuilder markupString = new StringBuilder();
-
-        JSONArray jsonResults = null;
-        
-        try {
-            jsonResults = (JSONArray) new JSONParser().parse(jsonObject.get(RESULT).toString());
-            
-            JSONObject json = null;
-            for (int i = 0; i < jsonResults.size(); i++) {
-                json = (JSONObject) jsonResults.get(i);
-                markupString.append(TAG_SPAN);
-                markupString.append(json.get(NAME));
-                markupString.append(END_SPAN);
-            
-            }
-        }catch (ParseException ex) {
-            Logger.getLogger(HeroTag.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return markupString.toString();
-    }
     
     private String getOutputFromRestServiceCall(String contentType, String category) {
         String restServiceOutput = null;
