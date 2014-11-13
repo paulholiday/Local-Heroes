@@ -94,8 +94,8 @@ public class DBQuery {
                 
                 if(point != null){
                     Point heroPoint = new Point();
-                    heroPoint.setLatitude(point.get("latitude").toString());
-                    heroPoint.setLongitude(point.get("longitude").toString());
+                    heroPoint.setLatitude(Double.parseDouble(point.get("latitude").toString()));
+                    heroPoint.setLongitude(Double.parseDouble(point.get("longitude").toString()));
                     hero.setPoint(heroPoint);
                 }
                 
@@ -168,7 +168,8 @@ public class DBQuery {
         heroToAdd.append("point", pointToAdd);
         
         BasicDBObject locationToAdd = new BasicDBObject("type", "Point");
-        locationToAdd.append("coordinates", "[" + hero.getPoint().getLongitude() + ", " + hero.getPoint().getLatitude() + "]");
+        double[] coordsArray = {hero.getPoint().getLongitude(), hero.getPoint().getLatitude()};
+        locationToAdd.append("coordinates", coordsArray);
         
         heroToAdd.append("loc", locationToAdd);
         

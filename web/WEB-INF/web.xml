@@ -40,4 +40,15 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/Success</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <description/>
+        <display-name>DataEntryController</display-name>
+        <servlet-name>DataEntryController</servlet-name>
+        <servlet-class>com.lbi.localheroes.controllers.DataEntryController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DataEntryController</servlet-name>
+        <url-pattern>/AddHero</url-pattern>
+    </servlet-mapping>
 </web-app>
