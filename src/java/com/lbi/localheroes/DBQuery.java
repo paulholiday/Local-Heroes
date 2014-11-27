@@ -5,6 +5,7 @@ import com.lbi.localheroes.model.Category;
 import com.lbi.localheroes.model.Hero;
 import com.lbi.localheroes.model.Point;
 import com.mongodb.AggregationOutput;
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -152,8 +153,20 @@ public class DBQuery {
 
     public void addHero(Hero hero) {
         BasicDBObject heroToAdd = new BasicDBObject("name", hero.getName());
-        heroToAdd.append("categories", "[" + hero.getCategories().get(0) + "]");
-        heroToAdd.append("tags", "[]");
+        
+        BasicDBList categoryList = new BasicDBList();
+        for(String category : hero.getCategories()) {
+            categoryList.add(category);
+        }
+        
+        heroToAdd.append("categories", categoryList);
+        
+        BasicDBList tagList = new BasicDBList();
+        for(String tag : hero.getTags()) {
+            tagList.add(tag);
+        }
+
+        heroToAdd.append("tags", tagList);
         
         BasicDBObject addressToAdd = new BasicDBObject("line1", hero.getAddress().getLine1());
         addressToAdd.append("county", hero.getAddress().getCounty());
