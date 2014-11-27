@@ -150,3 +150,34 @@ p.title {
     border-radius: 10px ;
     background: black;
 }
+
+.addHeroForm {
+    text-align: left;
+    background: #E9E9E9;
+    width: 400px;
+    margin-left: 34%;
+    padding: 25px 0 25px 0;
+}
+
+.addHeroForm p, .addHeroForm input[type=submit] {
+    clear: both;
+    margin-left: 10px;
+}
+
+.addHeroForm input, .addHeroForm select, .addHeroForm label {
+    margin-bottom: 15px;
+    margin-left: 30px;
+}
+
+.addHeroForm label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 90px;
+    
+}
+
+.addHeroForm input {
+    display: inline-block;
+    float: left;
+}
