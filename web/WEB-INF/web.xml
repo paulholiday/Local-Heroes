@@ -51,4 +51,15 @@
         <servlet-name>DataEntryController</servlet-name>
         <url-pattern>/AddHero</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <description/>
+        <display-name>CategoryEntryController</display-name>
+        <servlet-name>CategoryEntryController</servlet-name>
+        <servlet-class>com.lbi.localheroes.controllers.CategoryEntryController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategoryEntryController</servlet-name>
+        <url-pattern>/AddCategory</url-pattern>
+    </servlet-mapping>
 </web-app>

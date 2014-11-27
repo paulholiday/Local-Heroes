@@ -8,7 +8,7 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <script type="text/javascript" src="resources/js/jquery-1.10.2.min.js" ></script>
         <script type="text/javascript" src="resources/js/localHeroes.js" ></script>
-        <title>Hero created - Local Heroes</title>
+        <title>Category created - Local Heroes</title>
     </head>
     
     <body>
@@ -17,7 +17,7 @@
         </div>
         <div class="body">
             
-            <h1>Hero Added Successfully!</h1>
+            <h1>Category Added Successfully!</h1>
         </div>
         
     </body>

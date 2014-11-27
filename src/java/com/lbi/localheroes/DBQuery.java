@@ -6,12 +6,10 @@ import com.lbi.localheroes.model.Hero;
 import com.lbi.localheroes.model.Point;
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
-import com.mongodb.CommandResult;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.WriteConcern;
-import com.mongodb.WriteResult;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -174,6 +172,11 @@ public class DBQuery {
         heroToAdd.append("loc", locationToAdd);
         
         table.insert(heroToAdd, WriteConcern.JOURNAL_SAFE);
+    }
+    
+    public void addCategory(Category category) {
+        BasicDBObject categoryToAdd = new BasicDBObject("name", category.getName());
+        table.insert(categoryToAdd, WriteConcern.JOURNAL_SAFE);
     }
     
 }

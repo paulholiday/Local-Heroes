@@ -6,11 +6,9 @@ package com.lbi.localheroes.controllers;
 
 import com.lbi.localheroes.DBQuery;
 import com.lbi.localheroes.model.Category;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
  
