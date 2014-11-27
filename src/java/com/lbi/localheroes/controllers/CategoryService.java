@@ -18,7 +18,7 @@ public class CategoryService {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Category> getCategories() {
 
-        DBQuery dbQuery = new DBQuery("categories");
+        DBQuery dbQuery = new DBQuery();
         List<Category> categories = dbQuery.getCategories();
 
         return categories;

@@ -19,7 +19,7 @@
             
             <p>Add a Hero: </p>
             <form class="addHeroForm" action="AddHero" method="POST">
-                <select id="category"  name="Category">
+                <label>Category: </label><select id="category"  name="Category">
                     <option>Please select a category to add a hero to:</option>
                     <hero:getcategories/>
                     <c:forEach var="category" items="${categories}">

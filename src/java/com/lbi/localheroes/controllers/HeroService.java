@@ -20,7 +20,7 @@ public class HeroService {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Hero> getHeroesByCategory(@PathParam("param") String category) {
 
-        DBQuery dbQuery = new DBQuery("heroes");
+        DBQuery dbQuery = new DBQuery();
         List<Hero> heroes = dbQuery.getHeroesByCategory(category);
 
         return heroes;

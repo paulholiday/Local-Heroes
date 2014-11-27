@@ -27,15 +27,14 @@ import org.json.simple.parser.ParseException;
 public class DBQuery {
     
     private DBConnector connector;
-    private DBCollection table;
     
-    public DBQuery(String tableName){
+    public DBQuery(){
         connector = new DBConnector();
         connector.connect();
-        this.table = connector.getTable(tableName);
     }
     
     public List<Category> getCategories(){
+        DBCollection table = connector.getTable("categories");
         List<Category> categories = new ArrayList<Category>();
         DBCursor cursor = table.find();
         
@@ -56,6 +55,7 @@ public class DBQuery {
     }
     
     public List<Hero> getHeroesByCategory(String category){
+        DBCollection table = connector.getTable("heroes");
         List<Hero> heroes = new ArrayList<Hero>();
         DBObject query = new BasicDBObject();
         query.put("categories", category);
@@ -111,7 +111,7 @@ public class DBQuery {
     }
     
     public List<String> getTagsFromCategory(String category){
-        
+        DBCollection table = connector.getTable("heroes");
         DBObject categoryQuery = new BasicDBObject();
         categoryQuery.put("categories", category);
         DBObject match = new BasicDBObject();
@@ -152,6 +152,7 @@ public class DBQuery {
     }
 
     public void addHero(Hero hero) {
+        DBCollection table = connector.getTable("heroes");
         BasicDBObject heroToAdd = new BasicDBObject("name", hero.getName());
         
         BasicDBList categoryList = new BasicDBList();
@@ -188,6 +189,7 @@ public class DBQuery {
     }
     
     public void addCategory(Category category) {
+        DBCollection table = connector.getTable("categories");
         BasicDBObject categoryToAdd = new BasicDBObject("name", category.getName());
         table.insert(categoryToAdd, WriteConcern.JOURNAL_SAFE);
     }

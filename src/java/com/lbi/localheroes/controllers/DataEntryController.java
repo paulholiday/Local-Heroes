@@ -57,7 +57,7 @@ public class DataEntryController extends HttpServlet{
         
         hero.setPoint(point);
         
-        DBQuery dbQuery = new DBQuery("heroes");
+        DBQuery dbQuery = new DBQuery();
         dbQuery.addHero(hero);
         
         RequestDispatcher rd = null; 

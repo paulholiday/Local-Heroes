@@ -26,7 +26,7 @@ public class TagService {
     @Produces(MediaType.APPLICATION_JSON)
     public List<String> getHeroesByCategory(@PathParam("param") String category) {
 
-        DBQuery dbQuery = new DBQuery("heroes");
+        DBQuery dbQuery = new DBQuery();
         return dbQuery.getTagsFromCategory(category);
     }
     

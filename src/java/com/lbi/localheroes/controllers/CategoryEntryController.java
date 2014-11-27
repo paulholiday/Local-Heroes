@@ -29,7 +29,7 @@ public class CategoryEntryController extends HttpServlet{
  
         Category category = new Category(request.getParameter("Name"));
         
-        DBQuery dbQuery = new DBQuery("categories");
+        DBQuery dbQuery = new DBQuery();
         dbQuery.addCategory(category);
         
         RequestDispatcher rd = request.getRequestDispatcher("/addCategory.jsp");
