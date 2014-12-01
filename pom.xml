@@ -5,6 +5,8 @@
   <artifactId>Local-Heroes</artifactId>
   <version>1</version>
   
+      <dependencies>
+  
   <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-orm</artifactId>
@@ -22,7 +24,6 @@
     <artifactId>spring-data-mongodb</artifactId>
     <version>1.2.0.RELEASE</version>
 </dependency>
-    <dependencies>
         <dependency>
             <artifactId>junit</artifactId>
             <groupId>junit</groupId>
