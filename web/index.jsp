@@ -18,7 +18,6 @@
             <p class="title">Choose a category you want to search for</p>
             <form id="search-form" action="Results" method="post">
                 <select id="category"  name="Category">
-                    <option>Please select a category</option>
                     <hero:getcategories/>
                     <c:forEach var="category" items="${categories}">
                         <option><c:out value="${category.name}"/></option>
