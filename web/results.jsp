@@ -22,11 +22,6 @@
         
         <div class="topBar">
             <a href="/LocalHeroesProject"><h1>Local Heroes</h1></a>
-            <div class="topRight">
-                <span>Brick Lane, London</span>
-                <img class="toggleButton london" src="resources/images/toggle.jpg"/>
-                <span>Timber Bush, Edinburgh</span>
-            </div>
         </div>
         <div class="body">
             

@@ -74,35 +74,6 @@ $(document).ready(function() {
         google.maps.event.addDomListener(window, 'load', initialize);
     }
 
-    $(".toggleButton").click(function() {
-        if ($(this).hasClass("london")) {
-            $("body").css("background-image", "url(http://localhost:8080/Local-Heroes/resources/images/edinburgh.jpg)");
-            $(this).addClass("edinburgh");
-            $(this).removeClass("london");
-            switchLocation();
-            google.maps.event.addDomListener(window, 'load', switchLocation);
-        }
-        else {
-            $("body").css("background-image", "url(http://localhost:8080/Local-Heroes/resources/images/background.jpg)");
-            $(this).addClass("london");
-            $(this).removeClass("edinburgh");
-            initialize();
-            google.maps.event.addDomListener(window, 'load', initialize);
-        }
-    });
-
-
-
-    function switchLocation() {
-        var mapOptions = {
-            center: new google.maps.LatLng(55.974, -3.165),
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById("map-canvas"),
-                mapOptions);
-
-    }
 
     function addMarker(lat, long, pinColour) {
         var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColour,

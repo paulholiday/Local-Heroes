@@ -20,29 +20,6 @@ body {
     color: white;
 }
             
-.topBar .topRight .toggleButton {
-    display: inline-block;
-}
-            
-.topRight {
-    float: right;
-    text-align: center;
-    font-weight: bold;
-    margin-right: 30px;
-}
-
-.topRight img {
-    padding-top: 15px;
-}
-
-.topRight span {
-    padding-bottom: 20px;
-}
-
-.toggleButton {
-    padding: 5px;
-    display: inline;
-}
 
 .body {
     height: 100%;

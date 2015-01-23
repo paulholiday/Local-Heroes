@@ -13,11 +13,6 @@
     <body>
         <div class="topBar">
             <a href=""><h1>Local Heroes</h1></a>
-            <div class="topRight">
-                <span>Brick Lane, London</span>
-                <img class="toggleButton london" src="resources/images/toggle.jpg"/>
-                <span>Timber Bush, Edinburgh</span>
-            </div>
         </div>
         <div class="body">
             <p class="title">Choose a category you want to search for</p>
